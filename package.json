@@ -1,0 +1,25 @@
+{
+  "name": "gmod-packager",
+  "version": "0.1.0",
+  "description": "Package other NPM GLua modules into a single addon",
+  "main": "main.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Python1320/gmod-packager.git"
+  },
+  "keywords": [
+    "gmod",
+    "garrysmod",
+    "packaging"
+  ],
+  "author": "Python1320",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Python1320/gmod-packager/issues"
+  },
+  "homepage": "https://github.com/Python1320/gmod-packager#readme",
+  "dependencies": {
+    "merge-dirs": "^0.2.1"
+  }
+}
