@@ -13,6 +13,10 @@ fs.readdirSync(node_modules).forEach(file => {
 	var path_string = "node_modules/" + file;
 	var path_lua = path_string + "/lua";
 
+const rmdir = require('rimraf');
+rmdir('dist', function(error){});
+fs.mkdirSync("dist");
+
 try {
 if (!fs.lstatSync(path_string).isDirectory() || !fs.lstatSync(path_lua).isDirectory()) {
 return;
@@ -24,8 +28,8 @@ return;
 throw(e);
 }
 }
-	sources.push(path);
-	console.log(" \tAdding: " + path);
+	sources.push(path_string);
+	console.log(" \tAdding: " + path_string);
 })
 
 var mergeTrees = new MergeTrees(
