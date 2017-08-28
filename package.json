@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/Python1320/gmod-packager#readme",
   "dependencies": {
-    "merge-trees": "^1.0.1",
-    "rimraf": "^2.6.1"
+    "ignore": "*",
+    "fs-extra": "*",
+    "npm-packlist": "*",
   },
   "bin": "./main.js"
 }

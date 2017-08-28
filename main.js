@@ -2,47 +2,32 @@
 
 console.log("Running GMod Packager...");
 
-var MergeTrees = require('merge-trees');
+const packlist = require('npm-packlist');
+const ignore = require('ignore');
+var fs = require('fs-extra');
+const path = require('path');
+const targetpath = 'dist';
 
-var sources = [];
+const ig = ignore().add(['package.json',targetpath]);
 
-const node_modules = 'node_modules/';
-const fs = require('fs');
+function flatten_modulepath(mpath) 
+{
+	return mpath.replace(/^.*node_modules[\/\\][^\/\\][^\/\\]*[\/\\]/gi, '');
+}
 
-const rimraf = require('rimraf');
-rimraf.sync('dist/', {
-	glob: false
+packlist({ path: "." }).then(function(paths) {
+
+	ig
+	
+	.filter(paths)
+	.reduce(function(_, src) {
+		var dest = targetpath+"/"+flatten_modulepath(src);
+		console.log(src,dest);
+		var destpath = path.dirname(dest);
+		fs.ensureDirSync(destpath);
+		fs.copySync(src, dest,{"preserveTimestamps":true});
+
+		return _;
+	}, {})
+	
 });
-
-try {
-	fs.mkdirSync("dist");
-} catch (e) {}
-
-
-fs.readdirSync(node_modules).forEach(file => {
-	var path_string = "node_modules/" + file;
-	var path_lua = path_string + "/lua";
-
-
-	try {
-		if (!fs.lstatSync(path_string).isDirectory() || !fs.lstatSync(path_lua).isDirectory()) {
-			return;
-		}
-	} catch (e) {
-		if (e.code == 'ENOENT') {
-			return;
-		} else {
-			throw (e);
-		}
-	}
-	sources.push(path_string);
-	console.log(" \tAdding: " + path_string);
-})
-
-var mergeTrees = new MergeTrees(
-	sources,
-	'dist', {
-		overwrite: true
-	});
-
-mergeTrees.merge()
