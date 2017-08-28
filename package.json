@@ -22,7 +22,7 @@
   "dependencies": {
     "ignore": "*",
     "fs-extra": "*",
-    "npm-packlist": "*",
+    "npm-packlist": "*"
   },
   "bin": "./main.js"
 }
