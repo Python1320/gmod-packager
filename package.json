@@ -1,6 +1,6 @@
 {
   "name": "gmod-packager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Package other NPM GLua modules into a single addon",
   "main": "main.js",
   "scripts": {},
@@ -22,6 +22,7 @@
   "dependencies": {
     "ignore": "*",
     "fs-extra": "*",
+    "glob": "*",
     "npm-packlist": "*"
   },
   "bin": "./main.js"
