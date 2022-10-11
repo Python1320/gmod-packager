@@ -22,6 +22,7 @@
   "dependencies": {
     "ignore": "*",
     "fs-extra": "*",
+    "@npmcli/arborist": "*",
     "glob": "*",
     "npm-packlist": "*"
   },
